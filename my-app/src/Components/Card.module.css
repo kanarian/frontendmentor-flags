@@ -26,7 +26,8 @@
 .cardFlag{
     height:50%;
     width:100%;
-    background-color: red;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
 }
 
 .cardFlag img{
