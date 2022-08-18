@@ -4,11 +4,23 @@ export type Country = {
     population: number
     flagUrl: string
     name: string
-    nativeName: string
+    nativeName:{
+      [key:string]:{
+        official: string
+        common: string
+      }
+    }
     tld: Array<string>
-    currencies: Array<string>
+    currencies: {
+      [key:string]:{
+        name: string
+        symbol:string
+      }
+    }
     subregion: string
-    languages: object
+    languages: {
+      [key:string]: string
+    }
     capital: Array<string>
     borders: Array<string>
   }

@@ -7,12 +7,24 @@ export type CountryFromAPI =  {
     }
     name:{
       official: string
-      nativeName: string
+      nativeName:{
+        [key:string]:{
+          official: string
+          common: string
+        }
+      }
     }
     tld: Array<string>
     capital: Array<string>
-    currencies: Array<string>
+    currencies: {
+      [key:string]:{
+        name: string
+        symbol:string
+      }
+    }
     borders: Array<string>
     subregion: string
-    languages: object
+    languages: {
+      [key:string]: string
+    }
   }
