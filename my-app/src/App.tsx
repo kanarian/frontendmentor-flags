@@ -3,6 +3,7 @@ import { useQuery} from 'react-query';
 import './App.css';
 import CardContainer from './Components/CardContainer';
 import Header from './Components/Header';
+import LoadingComponent from './Components/LoadingComponent';
 import SearchField from './Components/SearchField';
 import Selection from './Components/Selection';
 import { Country } from './Types/Country';
@@ -13,20 +14,6 @@ import { countryFromAPIMaker } from './util/apiToFile';
 
 
 function App(): JSX.Element {
-  // const fetchAllCountriesFromAPI = (): any => fetch('https://restcountries.com/v3.1/all').then(res => res.json())
-  // const { isLoading, error,  data } = useQuery('allCountries', fetchAllCountriesFromAPI);
-
-  // const transformedData : Array<Country> = data?.map((countryEntry: CountryFromAPI) => {
-  //     return{
-  //       code: countryEntry.cca2,
-  //       flagUrl: countryEntry.flags.png,
-  //       name: countryEntry.name.official,
-  //       continents: countryEntry.continents,
-  //       population: countryEntry.population,
-  //       capital: countryEntry.capital,
-  //       borders: countryEntry.borders,
-  //     }
-  //   });
 
   const { isLoading, error, data } = useQuery(['getAllCountries'], async () => {
     const countryListFromAPI = await fetch('https://restcountries.com/v3.1/all').then(res => res.json()) as CountryFromAPI[]
@@ -60,11 +47,10 @@ function App(): JSX.Element {
     if(!data){
       return
     }
-    console.log('filtering')
     filterShownCountriesByNameAndRegion(text,selectedRegion)
   },[text,selectedRegion])
 
-  if (isLoading) return <>Loading...</>
+  if (isLoading) return <LoadingComponent/>
   if (error) return <>An error has occurred</>
 
   function getContinents() {

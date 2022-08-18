@@ -2,6 +2,7 @@
     width: 35em;
     height: 100%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    z-index: 10;
 }
 
 .flagSection img{
@@ -19,7 +20,6 @@
 }
 
 .informationSection{
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -41,7 +41,6 @@
 @media only screen and (max-width: 650px) {
     .informationSection li{
         display: block;
-        background-color: red;
         width:100%;
     }
   }
@@ -55,18 +54,21 @@
     background-color: var(--elements-color);
 }
 
+.backButtonWrapper{
+    margin-top: 50px;
+    margin-bottom:50px;
+    width:10%;
+
+}
 
 .buttonWrapper{
-    margin-top:50px;
     background-color: var(--elements-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    width:10%;
     border-radius:5px;
     height:30px;
     box-shadow:var(--border-shadow-color);
-    margin-bottom:50px;
 }
 .buttonWrapper button{
     border:none;
@@ -86,10 +88,10 @@
 }
 
 .buttonBorderContainer{
-    width:100%;
     padding-left: 5px;
     padding-right: 5px;;
     margin-left:10px;
+    margin-top: 10px;
 }
 
 .borderCountriesWrapper{
@@ -101,4 +103,5 @@
 .borderCountriesButtonWrapper{
     display: flex;
     margin-left:10px;
+    flex-wrap: wrap;
 }

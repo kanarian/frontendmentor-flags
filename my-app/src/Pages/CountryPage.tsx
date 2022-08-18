@@ -7,6 +7,7 @@ import styles from './CountryPage.module.css'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import { useNavigate } from "react-router-dom";
 import { Country } from '../Types/Country';
+import LoadingComponent from '../Components/LoadingComponent';
 
 const CountryPage = () => {
     const countryID = useParams().id
@@ -20,19 +21,18 @@ const CountryPage = () => {
 
     const {isLoading, error, data: borderData} = useQuery(['borderCountries',data], async () => {
         var borderCountries = data?.at(0)?.borders
-        console.log(borderCountries)
         const res = await fetch(`https://restcountries.com/v3.1/alpha?codes=${borderCountries?.join(',')}`)
         .then(res => res.json()) as CountryFromAPI[];
         return res.map(el => countryFromAPIMaker(el)) as Country[];
     }, {enabled: !!data?.at(0)?.borders})
 
 
-    console.log(borderData)
+    if (isLoading) return <LoadingComponent/>
+    if (error){return <div>error!</div>}
 
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>error!</div>
+    if (!data || !borderData) return <LoadingComponent/>
 
-    if (!data || !borderData || data.length != 1 ) return <div> Oops an error!</div>
+    if (data.length != 1) return <div>Something went wrong!</div>
 
 
     const thisCountry = data[0]
@@ -85,7 +85,7 @@ const CountryPage = () => {
             <Header/>
             <div className="main-section">
                 <div>
-                    <div className={styles.buttonWrapper}>
+                    <div className={`${styles.buttonWrapper} ${styles.backButtonWrapper}`}>
                         <AiOutlineArrowLeft className={styles.buttonWrapperIcon}/>
                         <button onClick={() => navigate('/')}>Back</button>
                     </div>
@@ -99,7 +99,7 @@ const CountryPage = () => {
                             </div>
                             <ul>
                                 {infoToShow.map((obj, idx) => {
-                                    return(<li key={idx}><span>{obj.title} : </span>{obj.value}</li>)
+                                    return(<li key={idx}><span className={styles.fontweight600}>{obj.title} : </span>{obj.value}</li>)
                                 })}
                             </ul>
                             <div className={styles.borderCountriesWrapper}>
@@ -109,7 +109,7 @@ const CountryPage = () => {
                                 <div className={styles.borderCountriesButtonWrapper}>
                                     {borderCountriesToShow && borderCountriesToShow.map((obj, idx) => {
                                         return(
-                                            <div className={`${styles.buttonWrapper} ${styles.buttonBorderContainer}`}>
+                                            <div key={idx} className={`${styles.buttonWrapper} ${styles.buttonBorderContainer}`}>
                                                 <button 
                                                 key={idx} 
                                                 onClick={() => navigate(`/country/${obj.code}`)}>
