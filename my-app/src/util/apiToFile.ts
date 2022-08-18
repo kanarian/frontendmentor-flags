@@ -3,9 +3,9 @@ import { CountryFromAPI } from "../Types/CountryFromAPI"
 
 export const countryFromAPIMaker = (countryEntry: CountryFromAPI) => {
     return {
-        code: countryEntry.cca2,
+        cca3: countryEntry.cca3,
         flagUrl: countryEntry.flags.png,
-        name: countryEntry.name.official,
+        name: countryEntry.name.common,
         continents: countryEntry.continents,
         population: countryEntry.population,
         capital: countryEntry.capital,

@@ -1,29 +1,40 @@
-import React from 'react';
-import { useQueries, useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { Navigate, useParams } from 'react-router-dom';
 import Header from '../Components/Header';
-import { Country } from '../Types/Country';
 import { CountryFromAPI } from '../Types/CountryFromAPI';
 import { countryFromAPIMaker } from '../util/apiToFile';
 import styles from './CountryPage.module.css'
+import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { useNavigate } from "react-router-dom";
+import { Country } from '../Types/Country';
 
 const CountryPage = () => {
     const countryID = useParams().id
+    const navigate = useNavigate();
 
-    const {isLoading, error, data} = useQuery(['getCountry', countryID], async () => {
+    const {data} = useQuery(['getCountry', countryID], async () => {
         const res = await fetch(`https://restcountries.com/v3.1/alpha/${countryID}`).then(res => res.json()) as CountryFromAPI[]
         return res.map(el => countryFromAPIMaker(el)) 
     })
+    
 
+    const {isLoading, error, data: borderData} = useQuery(['borderCountries',data], async () => {
+        var borderCountries = data?.at(0)?.borders
+        console.log(borderCountries)
+        const res = await fetch(`https://restcountries.com/v3.1/alpha?codes=${borderCountries?.join(',')}`)
+        .then(res => res.json()) as CountryFromAPI[];
+        return res.map(el => countryFromAPIMaker(el)) as Country[];
+    }, {enabled: !!data?.at(0)?.borders})
+
+
+    console.log(borderData)
 
     if (isLoading) return <div>Loading...</div>
     if (error) return <div>error!</div>
 
-    if (!data || data.length != 1 ) return <div> Oops an error!</div> 
+    if (!data || !borderData || data.length != 1 ) return <div> Oops an error!</div>
 
 
-
-    
     const thisCountry = data[0]
 
     const allNativeNameKeys = Object.keys(thisCountry.nativeName)
@@ -67,26 +78,48 @@ const CountryPage = () => {
         
     ]
 
+    const borderCountriesToShow = borderData.map(borderCountry => {return {code:borderCountry.cca3,name:borderCountry.name}})
+
     return (
         <div>
             <Header/>
             <div className="main-section">
                 <div>
-                    <div className={styles.backButtonWrapper}>
-                        <button>back</button>
+                    <div className={styles.buttonWrapper}>
+                        <AiOutlineArrowLeft className={styles.buttonWrapperIcon}/>
+                        <button onClick={() => navigate('/')}>Back</button>
                     </div>
-                    <div className={styles.flagSection}>
-                        <img src={thisCountry.flagUrl}/>
-                    </div>
-                    <div className={styles.informationSection}>
-                        <div>
-                            <h3>{thisCountry.name}</h3>
+                    <div className={styles.body}>
+                        <div className={styles.flagSection}>
+                            <img src={thisCountry.flagUrl}/>
                         </div>
-                        <ul>
-                            {infoToShow.map((obj, idx) => {
-                                return(<li key={idx}><span>{obj.title} : </span>{obj.value}</li>)
-                            })}
-                        </ul>
+                        <div className={styles.informationSection}>
+                            <div>
+                                <h1>{thisCountry.name}</h1>
+                            </div>
+                            <ul>
+                                {infoToShow.map((obj, idx) => {
+                                    return(<li key={idx}><span>{obj.title} : </span>{obj.value}</li>)
+                                })}
+                            </ul>
+                            <div className={styles.borderCountriesWrapper}>
+                                <div>
+                                    <span className={styles.fontweight600}>Border Countries</span>:
+                                </div>
+                                <div className={styles.borderCountriesButtonWrapper}>
+                                    {borderCountriesToShow && borderCountriesToShow.map((obj, idx) => {
+                                        return(
+                                            <div className={`${styles.buttonWrapper} ${styles.buttonBorderContainer}`}>
+                                                <button 
+                                                key={idx} 
+                                                onClick={() => navigate(`/country/${obj.code}`)}>
+                                                    {obj.name}
+                                                </button>
+                                            </div>)
+                                    })}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

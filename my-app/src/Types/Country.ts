@@ -1,5 +1,6 @@
 export type Country = {
-    code: string
+    cca3: string
+    borders: Array<string>
     continents: Array<string>
     population: number
     flagUrl: string
@@ -22,5 +23,4 @@ export type Country = {
       [key:string]: string
     }
     capital: Array<string>
-    borders: Array<string>
   }

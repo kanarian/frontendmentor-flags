@@ -25,4 +25,5 @@ code {
   --elements-color:hsl(0, 0%, 100%);
   --input-color:hsl(0, 0%, 52%);
   --border-shadow-color:rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --heavier-border-shadow-color:rgba(36, 38, 41, 0.2) 0px 8px 24px;
 }

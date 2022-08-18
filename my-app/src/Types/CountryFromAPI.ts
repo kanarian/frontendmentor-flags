@@ -1,5 +1,5 @@
 export type CountryFromAPI =  {
-    cca2: string
+    cca3: string
     continents: Array<string>
     population: number
     flags:{
@@ -7,6 +7,7 @@ export type CountryFromAPI =  {
     }
     name:{
       official: string
+      common: string
       nativeName:{
         [key:string]:{
           official: string
