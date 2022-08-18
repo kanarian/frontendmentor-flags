@@ -85,7 +85,7 @@ const CountryPage = () => {
         <div>
             <Header/>
             <div className="main-section">
-                <div>
+                <div className={styles.countryPageBody}>
                     <div className={`${styles.buttonWrapper} ${styles.backButtonWrapper}`}>
                         <AiOutlineArrowLeft className={styles.buttonWrapperIcon}/>
                         <button onClick={() => navigate('/')}>Back</button>
@@ -96,7 +96,7 @@ const CountryPage = () => {
                         </div>
                         <div className={styles.informationSection}>
                             <div>
-                                <h1>{thisCountry.name}</h1>
+                                <h1 className={styles.countryTitle}>{thisCountry.name}</h1>
                             </div>
                             <ul>
                                 {infoToShow.map((obj, idx) => {
