@@ -16,7 +16,6 @@ const Header = () => {
 
     useEffect( () => {
         const themeFromLS = localStorage.getItem('theme')
-        console.log(themeFromLS)
         if(!themeFromLS){
             setTheme("light")
             return
@@ -25,8 +24,7 @@ const Header = () => {
     },[])
 
     useEffect( () => {
-        if(theme==="")return
-        console.log('setting in LS: '+ 'theme',theme === "light" ? "light" : "dark")
+        if(theme === "") return
         localStorage.setItem('theme',theme === "light" ? "light" : "dark")
         setThemeBasedOnStyling(theme === "light" ? lightThemeStyling : darkThemeStyling)
     },[theme])

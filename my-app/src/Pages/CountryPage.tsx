@@ -46,7 +46,7 @@ const CountryPage = () => {
     
     const allLanguageKeys = Object.keys(thisCountry.languages)
     const allLanguageNames = allLanguageKeys.map(languageKey => thisCountry.languages[languageKey])
-
+    console.log(thisCountry.population)
     const infoToShow= [
         {
             title: 'Native name',
@@ -54,7 +54,7 @@ const CountryPage = () => {
         },
         {
             title: 'Population',
-            value: thisCountry.population
+            value: Intl.NumberFormat().format(thisCountry.population)
         },
         {
             title: 'Region',

@@ -16,7 +16,7 @@ const Card = ({country} : {country:Country}) => {
                     <div><strong>{country.name}</strong></div>
                 </div>
                 <div>
-                    <span className={styles.cardKeyword}>Population:</span> {country.population}
+                    <span className={styles.cardKeyword}>Population:</span> {Intl.NumberFormat().format(country.population)}
                 </div>
                 <div>
                     <span className={styles.cardKeyword}>Region:</span> {country.continents?.[0]}
