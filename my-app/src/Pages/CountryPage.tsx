@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Header from '../Components/Header';
 import { CountryFromAPI } from '../Types/CountryFromAPI';
 import { countryFromAPIMaker } from '../util/apiToFile';
@@ -21,10 +21,11 @@ const CountryPage = () => {
 
     const {isLoading, error, data: borderData} = useQuery(['borderCountries',data], async () => {
         var borderCountries = data?.at(0)?.borders
+        if (!borderCountries) return []
         const res = await fetch(`https://restcountries.com/v3.1/alpha?codes=${borderCountries?.join(',')}`)
         .then(res => res.json()) as CountryFromAPI[];
         return res.map(el => countryFromAPIMaker(el)) as Country[];
-    }, {enabled: !!data?.at(0)?.borders})
+    }, {enabled: !!data})
 
 
     if (isLoading) return <LoadingComponent/>
