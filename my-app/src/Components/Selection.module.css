@@ -1,6 +1,6 @@
 .selectionWrapper{
     margin-top:50px;
-    background-color: white;
+    background-color: var(--elements-color);
     display: flex;
     align-items: center;
     width:30%;
@@ -10,9 +10,9 @@
 }
 .selectionWrapper select{
     border:none;
-    background-color: white;
+    background-color: var(--elements-color);
     width:100%;
     height:100%;
     margin-right:5px;
-    color:black;
+    color:var(--input-color);
 }

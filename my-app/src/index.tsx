@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './Home';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import CountryPage from './Pages/CountryPage';
+
+
 
 const queryClient: QueryClient = new QueryClient()
 
@@ -15,12 +17,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App/>}/>
-          <Route path="/country/:id" element={<CountryPage/>}/>
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App/>}/>
+            <Route path="/country/:id" element={<CountryPage/>}/>
+          </Routes>
+        </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>
 );

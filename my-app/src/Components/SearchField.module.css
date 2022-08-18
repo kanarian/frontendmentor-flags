@@ -1,19 +1,25 @@
 .searchField input{
     border:none;
-    background-color: white;
+    background-color: var(--elements-color);
     width:100%;
     height:100%;
     margin-left:5px;
-    color:black;
+    color:var(--text-color);
 }
 
 .searchField {
     margin-top:50px;
-    background-color: white;
+    color:var(--text-color);
+    background-color: var(--elements-color);
     display: flex;
     align-items: center;
     width:30%;
     border-radius:5px;
     padding:20px;
     box-shadow:var(--border-shadow-color);
+}
+
+.icon{
+    color:var(--input-color);
+    background-color:var(--elements-color);
 }

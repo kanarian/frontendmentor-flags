@@ -9,6 +9,10 @@
     flex-direction: column;
 }
 
+.card *{
+    background-color: var(--elements-color);
+}
+
 .card:hover{
     cursor: pointer;
     box-shadow: var(--heavier-border-shadow-color);

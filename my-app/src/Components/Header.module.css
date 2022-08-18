@@ -2,7 +2,7 @@
     background-color: var(--elements-color);
     display: flex;
     justify-content: space-between;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    box-shadow: var(--heavier-border-shadow-color);
     align-items: center;
     height:5em;
     z-index:10;
@@ -23,4 +23,8 @@
 .header div{
     font-size: 18px;
     margin-right: 2em;
+}
+
+.themeMode{
+    cursor: pointer;
 }

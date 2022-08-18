@@ -7,7 +7,7 @@ const SearchField = ({callBackFunction} : {callBackFunction: (e: string) => void
 
     return (
         <div className={styles.searchField}>
-            <HiSearch style={{backgroundColor:'white'}} />
+            <HiSearch className={styles.icon}/>
             <input
                 type="text" 
                 placeholder="Search for a country..."
