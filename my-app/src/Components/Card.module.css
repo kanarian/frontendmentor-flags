@@ -9,6 +9,12 @@
     flex-direction: column;
 }
 
+.card:hover{
+    cursor: pointer;
+    box-shadow: var(--heavier-border-shadow-color);
+    transition: 0.5s;
+}
+
 .cardBody{
     margin:20px;
 }

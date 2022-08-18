@@ -43,7 +43,6 @@ function App(): JSX.Element {
 
   function filterShownCountriesByNameAndRegion(text: string, continent: string): void{
     if (continent === "Any"){
-      console.log('any')
       const filteredCountries = data?.filter(country => country.name.toLowerCase().includes(text.toLowerCase()));
       setShownCountries(filteredCountries)
     }

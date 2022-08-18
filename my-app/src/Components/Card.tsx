@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Country } from '../Types/Country';
 import styles from './Card.module.css';
 
 const Card = ({country} : {country:Country}) => {
+    const navigate = useNavigate();
+
     return (
-        <div className={styles.card}>
+        <div onClick={() => {navigate(`/country/${country.cca3}`)}} className={styles.card}>
             <div className={styles.cardFlag}>
                 <img src={country.flagUrl}></img>
             </div>
