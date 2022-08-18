@@ -2,11 +2,12 @@
     display: inline-flex;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     z-index: 10;
+    flex-grow: 1;
 }
 
 .flagSection img{
-    max-width: 35em;
-    min-width: 45em;
+    max-width: 45em;
+    min-width: 35em;
     object-fit: contain;
     width:100%;
     height:100%;
