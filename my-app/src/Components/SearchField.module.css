@@ -8,12 +8,12 @@
 }
 
 .searchField {
-    margin-top:50px;
+    margin-top:10px;
     color:var(--text-color);
     background-color: var(--elements-color);
     display: flex;
     align-items: center;
-    width:30%;
+    width:400px;
     border-radius:5px;
     padding:20px;
     box-shadow:var(--border-shadow-color);
