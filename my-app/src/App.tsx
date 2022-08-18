@@ -7,6 +7,7 @@ import SearchField from './Components/SearchField';
 import Selection from './Components/Selection';
 import { Country } from './Types/Country';
 import { CountryFromAPI } from './Types/CountryFromAPI';
+import { countryFromAPIMaker } from './util/apiToFile';
 
 
 
@@ -30,20 +31,7 @@ function App(): JSX.Element {
   const { isLoading, error, data } = useQuery(['getAllCountries'], async () => {
     const countryListFromAPI = await fetch('https://restcountries.com/v3.1/all').then(res => res.json()) as CountryFromAPI[]
     const transformedData = countryListFromAPI.map((countryEntry: CountryFromAPI) => {
-      return{
-        code: countryEntry.cca2,
-        flagUrl: countryEntry.flags.png,
-        name: countryEntry.name.official,
-        continents: countryEntry.continents,
-        population: countryEntry.population,
-        capital: countryEntry.capital,
-        borders: countryEntry.borders,
-        nativeName: countryEntry.name.nativeName,
-        tld: countryEntry.tld,
-        currencies: countryEntry.currencies,
-        subregion: countryEntry.subregion,
-        languages: countryEntry.languages
-      }
+      return countryFromAPIMaker(countryEntry)
     }) as Country[]
     return transformedData
   })
