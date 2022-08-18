@@ -1,0 +1,38 @@
+.card{
+    display: flex;
+    margin: 25px;
+    border-radius: 5px;
+    box-shadow: var(--border-shadow-color);
+    height: 320px;
+    width: 280px;
+    background-color: var(--elements-color);
+    flex-direction: column;
+}
+
+.cardBody{
+    margin:20px;
+}
+
+.cardHeader{
+    margin-bottom:20px
+}
+
+.cardFlag{
+    height:50%;
+    width:100%;
+    background-color: red;
+}
+
+.cardFlag img{
+    height: 160px;
+    width: 280px;
+    object-fit: fill;
+}
+
+.cardFlag{
+    overflow: hidden;
+}
+
+.cardKeyword{
+    font-weight: 600;
+}
