@@ -17,7 +17,10 @@ const Header = () => {
     useEffect( () => {
         const themeFromLS = localStorage.getItem('theme')
         console.log(themeFromLS)
-        if(!themeFromLS) setTheme("light")
+        if(!themeFromLS){
+            setTheme("light")
+            return
+        }
         setTheme(themeFromLS)
     },[])
 
