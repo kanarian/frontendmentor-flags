@@ -92,7 +92,7 @@ const CountryPage = () => {
                     </div>
                     <div className={styles.body}>
                         <div className={styles.flagSection}>
-                            <img src={thisCountry.flagUrl}/>
+                            <img alt={`Flag of country ${thisCountry.name}`} src={thisCountry.flagUrl}/>
                         </div>
                         <div className={styles.informationSection}>
                             <div>

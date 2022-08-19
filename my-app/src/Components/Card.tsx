@@ -9,7 +9,7 @@ const Card = ({country} : {country:Country}) => {
     return (
         <div onClick={() => {navigate(`/country/${country.cca3}`)}} className={styles.card}>
             <div className={styles.cardFlag}>
-                <img src={country.flagUrl}></img>
+                <img alt={`Flag of country ${country.name}`} src={country.flagUrl}></img>
             </div>
             <div className={styles.cardBody}>
                 <div className={styles.cardHeader}>
